@@ -18,6 +18,7 @@ class Review(models.Model):
 
     author = models.ForeignKey(User, verbose_name='작성자', on_delete=models.CASCADE)
     place = models.ForeignKey(Place, verbose_name='장소', on_delete=models.CASCADE)
+    
 
     class Meta:
         db_table = 'review'

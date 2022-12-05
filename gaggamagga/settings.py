@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'daphne',
     'channels',
     'chat',
+    'notification',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

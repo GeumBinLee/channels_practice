@@ -30,6 +30,7 @@ urlpatterns = [
     path('api/api.json/', schema_view.without_ui(cache_timeout=0), name='schema-swagger-json'), 
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('chat/', include('chat.urls')),
+    path('notification/', include('notification.urls')),
 ]
 
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
