@@ -3,6 +3,8 @@ import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 
+from .models import Chat
+
 
 # async 키워드로 비동기 함수 동작을 알림
 # await를 이용해 async 함수를 호출하고 실제 결과값을 받아온다.
@@ -47,7 +49,7 @@ class ChatConsumer(WebsocketConsumer):
         # username = self.scope["user"].first_name
         # name = self.scope['user'].username
         text_data_json = json.loads(text_data)
-        message = text_data_json["message"]
+        message = text_data_json['message']
         # message = (username + '(' + name + ')' + ':\n' + message)
 
         # Send message to room group
@@ -56,6 +58,7 @@ class ChatConsumer(WebsocketConsumer):
             # type으로 실제 메시지를 수신했을 때의 이벤트 핸들러를 지정해줄 수 있다.
             # 이번 예제에서는 45번 라인의 chat_message 함수를 핸들러 함수로 지정했다.
         )
+        message = Chat.objects.create(content=text_data_json["message"], sender=self.scope['user'])
 
     # Receive message from room group
     def chat_message(self, event):
