@@ -4,6 +4,8 @@ from django.core.validators import MaxValueValidator
 from users.models import User
 from places.models import Place
 
+
+
 class Review(models.Model):
     title = models.CharField('제목', max_length=50)
     content = models.TextField('내용', max_length=500)
@@ -18,7 +20,6 @@ class Review(models.Model):
 
     author = models.ForeignKey(User, verbose_name='작성자', on_delete=models.CASCADE)
     place = models.ForeignKey(Place, verbose_name='장소', on_delete=models.CASCADE)
-    
 
     class Meta:
         db_table = 'review'
