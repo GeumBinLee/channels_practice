@@ -7,4 +7,6 @@ def index(request):
 
 
 def room(request, room_name):
-    return render(request, "chat/room.html", {"room_name": room_name})
+    return render(request,
+                  "chat/room.html",
+                  {"room_name": room_name}) # 현재 채팅방의 이름을 받아온다.

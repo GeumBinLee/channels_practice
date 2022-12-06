@@ -14,10 +14,6 @@
     <div class="container">
         <div class="row mt-5 justify-content-center">
             <div class="col-4">
-                <div>
-                    <label for="username" class="form-label">username</label>
-                    <input id="username" class="form-control" type="text">
-                </div>
                 <button class="btn btn-primary mt-2" id=button>Click Me</button>
             </div>
         </div>
@@ -31,7 +27,7 @@
 <script>
     const notificationSocket = new WebSocket(
         'ws://'
-        + window.location.host
+        + window.location.host // 장고 서버 주소 -> 127.0.0.1:8000
         + '/ws/notification/'
     );
 
@@ -46,8 +42,8 @@
     };
 
     document.querySelector('#button').onclick = function (e) {
-        const username = document.querySelector('#username');
-        const message = username.value
+        // const username = document.querySelector('#username');
+        const message = "덧글이 달렸습니다."
         notificationSocket.send(JSON.stringify({
             'message': message
         }))
