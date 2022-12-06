@@ -1,7 +1,14 @@
 import json
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
+from .models import Notification
+from channels.db import database_sync_to_async
+
+
 
 class NotificationConsumer(AsyncJsonWebsocketConsumer) :
+    @database_sync_to_async
+    def create_notification(self, message) :
+        return Notification.objects.create(content=message)
     
     async def connect(self) :
         self.group_name = 'notification'
@@ -27,6 +34,7 @@ class NotificationConsumer(AsyncJsonWebsocketConsumer) :
     
         # 그룹에 메시지 보내기
         await self.channel_layer.group_send(self.group_name, event)
+        save_message = await self.create_notification(message=message)
         
     # 그룹에서 메시지 받기
     async def send_message(self, event) :

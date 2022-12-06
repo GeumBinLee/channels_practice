@@ -12,11 +12,10 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Chat',
+            name='Notification',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('content', models.CharField(max_length=30)),
-                ('sender', models.CharField(max_length=30, null=True)),
             ],
         ),
     ]
