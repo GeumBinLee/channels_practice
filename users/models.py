@@ -1,16 +1,17 @@
-from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
-from django.core.validators import MaxValueValidator
-from django.utils import timezone
-
-from gaggamagga.settings import get_secret
-
 import base64
 import hashlib
 import hmac
 import time
-import requests
 from random import randint
+
+import requests
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.core.validators import MaxValueValidator
+from django.db import models
+from django.utils import timezone
+
+from gaggamagga.settings import get_secret
+
 
 class UserManager(BaseUserManager):
     def create_user(self, username, email, phone_number, password=None):

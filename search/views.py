@@ -1,6 +1,8 @@
 from rest_framework import generics
-from places. models import Place
+
+from places.models import Place
 from places.serializers import PlaceSerializer
+
 
 class SearchListView(generics.ListAPIView) :
     queryset = Place.objects.all()

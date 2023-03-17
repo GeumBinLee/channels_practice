@@ -1,33 +1,37 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.views import TokenViewBase
-from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
-from rest_framework_simplejwt.settings import api_settings
-
-from django.contrib.auth.hashers import check_password
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.http import urlsafe_base64_decode
-from django.utils.encoding import DjangoUnicodeDecodeError, force_str
-from django.utils import timezone
-from django.shortcuts import get_list_or_404, redirect
-
-from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
-
 from datetime import datetime
+
 import jwt
 import requests
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.shortcuts import get_list_or_404, redirect
+from django.utils import timezone
+from django.utils.encoding import DjangoUnicodeDecodeError, force_str
+from django.utils.http import urlsafe_base64_decode
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
+from rest_framework import status
+from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+from rest_framework_simplejwt.settings import api_settings
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenViewBase
 
 from gaggamagga.settings import get_secret
+
 from .jwt_claim_serializer import CustomTokenObtainPairSerializer
-from .serializers import (SignupSerializer, PrivateProfileSerializer, PublicProfileSerializer, LogoutSerializer, 
-ProfileUpdateSerializer, ChangePasswordSerializer, SetNewPasswordSerializer, PasswordResetSerializer, LoginLogListSerializer)
-from .models import User, ConfirmEmail, ConfirmPhoneNumber, Profile, LoggedIn, OauthId
+from .models import (ConfirmEmail, ConfirmPhoneNumber, LoggedIn, OauthId,
+                     Profile, User)
+from .serializers import (ChangePasswordSerializer, LoginLogListSerializer,
+                          LogoutSerializer, PasswordResetSerializer,
+                          PrivateProfileSerializer, ProfileUpdateSerializer,
+                          PublicProfileSerializer, SetNewPasswordSerializer,
+                          SignupSerializer)
 from .utils import Util
+
 
 class UserView(APIView):
     permission_classes = [AllowAny]

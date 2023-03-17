@@ -1,4 +1,5 @@
-from rest_framework import serializers, exceptions
+from rest_framework import exceptions, serializers
+
 from places.models import Place
 
 

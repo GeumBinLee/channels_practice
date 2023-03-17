@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from .models import Place
 from reviews.models import Review
+
+from .models import Place
+
 
 class ReviewInline(admin.StackedInline):
     model = Review

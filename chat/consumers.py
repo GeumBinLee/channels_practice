@@ -5,7 +5,6 @@ from channels.generic.websocket import WebsocketConsumer
 
 from .models import Chat
 
-
 # async 키워드로 비동기 함수 동작을 알림
 # await를 이용해 async 함수를 호출하고 실제 결과값을 받아온다.
 

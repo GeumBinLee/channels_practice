@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .models import Review, Comment, Recomment
+from .models import Comment, Recomment, Review
+
 
 class ReviewListSerializer(serializers.ModelSerializer):
     nickname = serializers.SerializerMethodField()

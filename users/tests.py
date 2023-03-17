@@ -1,12 +1,12 @@
-from django.urls import reverse
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import smart_bytes
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-
+from django.urls import reverse
+from django.utils.encoding import smart_bytes
+from django.utils.http import urlsafe_base64_encode
 from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import User, ConfirmPhoneNumber, Profile
+from .models import ConfirmPhoneNumber, Profile, User
+
 
 class UserSignupAPIViewTestCase(APITestCase):
     

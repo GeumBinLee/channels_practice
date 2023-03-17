@@ -1,15 +1,15 @@
-from rest_framework import serializers, exceptions
-from rest_framework_simplejwt.tokens import RefreshToken, TokenError
+import re
 
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import smart_bytes, force_str
+from django.utils.encoding import force_str, smart_bytes
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from rest_framework import exceptions, serializers
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
-import re
-
-from .models import User, Profile, LoggedIn
+from .models import LoggedIn, Profile, User
 from .utils import Util
+
 
 #회원가입 serializer
 class SignupSerializer(serializers.ModelSerializer):
